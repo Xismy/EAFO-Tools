@@ -38,8 +38,8 @@ public class EAFO_Tools extends JFrame {
 	private JPanel contentPane;
 	private JTextField tf_zs;
 	private JTextField tf_zl;
-	private JLabel lbz1s1;
-	private JLabel lbz2s1;
+	private JLabel lbzs1, lbys1, lbzs2, lbys2,
+	lbzs1_2, lbys1_2, lbzs2_2, lbys2_2;
 	private RedAdaptacion redAdaptacion = new RedAdaptacion();
 
 	/**
@@ -113,10 +113,21 @@ public class EAFO_Tools extends JFrame {
 					return;
 				
 				redAdaptacion.setParam(zs[0], zs[1], zl[0], zl[1]);
-				redAdaptacion.resolverL();
+				redAdaptacion.resolverL1();
 				sol = redAdaptacion.getSol(0);
-				lbz1s1.setText(""+sol[0]);
-				lbz2s1.setText(""+sol[1]);
+				lbzs1.setText("S1: "+sol[0]);
+				lbys1.setText("S1: "+sol[1]);
+				sol = redAdaptacion.getSol(1);
+				lbzs2.setText("S2: "+sol[0]);
+				lbys2.setText("S2: "+sol[1]);
+				
+				redAdaptacion.resolverL2();
+				sol = redAdaptacion.getSol(2);
+				lbzs1_2.setText("S1: "+sol[0]);
+				lbys1_2.setText("S1: "+sol[1]);
+				sol = redAdaptacion.getSol(3);
+				lbzs2_2.setText("S2: "+sol[0]);
+				lbys2_2.setText("S2: "+sol[1]);
 			}
 		});
 		interfaz.add(btnNewButton);
@@ -132,31 +143,55 @@ public class EAFO_Tools extends JFrame {
 		layeredPane.setPreferredSize(new Dimension(600, 330));
 		panel_1.add(layeredPane);
 		
-		JLabel label = new JLabel("");
+		JLabel lbL1 = new JLabel("");
 		ImageIcon image = new ImageIcon(EAFO_Tools.class.getResource("/gui/L1.PNG"));
 		image = new ImageIcon(image.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT));
 		
-		lbz1s1 = new JLabel("S1");
-		lbz1s1.setBounds(313, 93, 46, 14);
-		layeredPane.add(lbz1s1);
+		lbzs1 = new JLabel("S1");
+		lbzs1.setBounds(313, 93, 100, 14);
+		layeredPane.add(lbzs1);
 		
-		lbz2s1 = new JLabel("S1");
-		lbz2s1.setBounds(398, 210, 46, 14);
-		layeredPane.add(lbz2s1);
-		label.setIcon(image);
-		label.setBounds(30, 30, 600, 300);
-		layeredPane.add(label);
+		lbzs2 = new JLabel("S2");
+		lbzs2.setBounds(313, 109, 100, 14);
+		layeredPane.add(lbzs2);
+		
+		lbys1 = new JLabel("S1");
+		lbys1.setBounds(344, 210, 100, 14);
+		layeredPane.add(lbys1);
+		
+		lbys2 = new JLabel("S2");
+		lbys2.setBounds(344, 235, 100, 14);
+		layeredPane.add(lbys2);
+		lbL1.setIcon(image);
+		lbL1.setBounds(30, 30, 600, 300);
+		layeredPane.add(lbL1);
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setPreferredSize(new Dimension(600, 330));
 		panel_1.add(layeredPane_1);
 		
-		JLabel label2 = new JLabel("");
-		label2.setBounds(30, 30, 600, 300);
-		layeredPane_1.add(label2);
+		lbzs1_2 = new JLabel("S1");
+		lbzs1_2.setBounds(431, 96, 100, 14);
+		layeredPane_1.add(lbzs1_2);
+		
+		lbzs2_2 = new JLabel("S2");
+		lbzs2_2.setBounds(431, 114, 100, 14);
+		layeredPane_1.add(lbzs2_2);
+		
+		lbys1_2 = new JLabel("S1");
+		lbys1_2.setBounds(350, 158, 100, 14);
+		layeredPane_1.add(lbys1_2);
+		
+		lbys2_2 = new JLabel("S2");
+		lbys2_2.setBounds(350, 176, 100, 14);
+		layeredPane_1.add(lbys2_2);
+		
+		JLabel lbL2 = new JLabel("");
+		lbL2.setBounds(30, 30, 600, 300);
+		layeredPane_1.add(lbL2);
 		image = new ImageIcon(EAFO_Tools.class.getResource("/gui/L2.PNG"));
 		image = new ImageIcon(image.getImage().getScaledInstance(600, 300, Image.SCALE_DEFAULT));
-		label2.setIcon(image);
+		lbL2.setIcon(image);
 	}
 	
 	static float[] leerComplejo(String dato){

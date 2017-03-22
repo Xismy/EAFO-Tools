@@ -13,7 +13,7 @@ public class RedAdaptacion {
 	/*********************************************************
 	 * Resuelve los valores de a y b para la adaptacion en L.
 	 *********************************************************/
-	public void resolverL(){
+	public void resolverL1(){
 		float A, B, C;
 		float r_disc;
 		
@@ -28,6 +28,23 @@ public class RedAdaptacion {
 		
 		for(int i = 0; i<2; i++)
 			a[i] = (b[i]*A-xl)/(b[i]*b[i]*A-2*xl*b[i]+1)-xs;
+	}
+	
+	public void resolverL2(){
+		float A, B, C;
+		float r_disc;
+		
+		A = 1;
+		B = 2*xl;
+		C = rl*rl+xl*xl-(rl/rs)*(rs*rs+xs*xs);
+		
+		r_disc = (float)Math.sqrt(B*B-4*A*C);
+		
+		a[2] = (-B+r_disc)/(2*A);
+		a[3] = (-B-r_disc)/(2*A);
+		
+		for(int i = 2; i<4; i++)
+			b[i] = xs/(rs*rs+xs*xs)+(a[i]+xl)/(a[i]*a[i]+2*xl*a[i]+rl*rl+xl*xl);
 	}
 	
 	public void setParam(float rs, float xs, float rl, float xl){
