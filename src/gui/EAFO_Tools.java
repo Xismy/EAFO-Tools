@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.AdaptacionMicrostrip;
 import data.RedAdaptacion;
 
 import javax.swing.JTabbedPane;
@@ -41,6 +42,7 @@ public class EAFO_Tools extends JFrame {
 	private JLabel lbzs1, lbys1, lbzs2, lbys2,
 	lbzs1_2, lbys1_2, lbzs2_2, lbys2_2;
 	private RedAdaptacion redAdaptacion = new RedAdaptacion();
+	private AdaptacionMicrostrip adaptacionMicrostrip = new AdaptacionMicrostrip();
 
 	/**
 	 * Launch the application.
@@ -51,6 +53,7 @@ public class EAFO_Tools extends JFrame {
 				try {
 					EAFO_Tools frame = new EAFO_Tools();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -111,7 +114,7 @@ public class EAFO_Tools extends JFrame {
 				
 				if(zs==null || zl==null)
 					return;
-				
+				adaptacionMicrostrip.resolverStub();
 				redAdaptacion.setParam(zs[0], zs[1], zl[0], zl[1]);
 				redAdaptacion.resolverL1();
 				sol = redAdaptacion.getSol(0);
