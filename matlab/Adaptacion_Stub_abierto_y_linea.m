@@ -24,20 +24,20 @@ for l1=0:0.0001:0.5
         if imag(Zin)>=0
             if real(Zz)>= real(Zin)*0.999 && real(Zz)<=real(Zin)*1.001
                 if imag(Zz)>= imag(Zin)*0.999 && imag(Zz)<=imag(Zin)*1.001
-                    L1=l1 %%% Longitud del Stub
-                    w1=fcalcular_w(Zostub,er,L1)  %% Ancho del Stub
-                    L2=l2 %%%% Longitud de la linea
-                    w2=fcalcular_w(Zolinea,er,L2)  %%% Ancho de la linea
+                    Lstub=l1 %%% Longitud del Stub
+                    Wstub=fcalcular_w(Zostub,er,Lstub)  %% Ancho del Stub
+                    Llinea=l2 %%%% Longitud de la linea
+                    Wlinea=fcalcular_w(Zolinea,er,Llinea)  %%% Ancho de la linea
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
                 end
             end
         else
             if real(Zz)>= real(Zin)*0.999 && real(Zz)<=real(Zin)*1.001
                 if imag(Zz)<= imag(Zin)*0.999 && imag(Zz)>=imag(Zin)*1.001
-                    L1=l1 %%% Longitud del Stub
-                    w1=fcalcular_w(Zostub,er,L1)  %% Ancho del Stub
-                    L2=l2 %%%% Longitud de la linea
-                    w2=fcalcular_w(Zolinea,er,L2)  %%% Ancho de la linea
+                    Lstub=l1 %%% Longitud del Stub
+                    Wstub=fcalcular_w(Zostub,er,Lstub)  %% Ancho del Stub
+                    Llinea=l2 %%%% Longitud de la linea
+                    Wlinea=fcalcular_w(Zolinea,er,Llinea)  %%% Ancho de la linea
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
                 end
             end
