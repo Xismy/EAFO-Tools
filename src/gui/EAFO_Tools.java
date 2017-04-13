@@ -42,7 +42,7 @@ public class EAFO_Tools extends JFrame {
 	private JLabel lbzs1, lbys1, lbzs2, lbys2,
 	lbzs1_2, lbys1_2, lbzs2_2, lbys2_2;
 	private RedAdaptacion redAdaptacion = new RedAdaptacion();
-	private AdaptacionMicrostrip adaptacionMicrostrip = new AdaptacionMicrostrip();
+	
 
 	/**
 	 * Launch the application.
@@ -91,7 +91,7 @@ public class EAFO_Tools extends JFrame {
 		JLabel lbl_zs = new JLabel("<html> Z<sub>S</sub> </html>");
 		interfaz.add(lbl_zs);
 		
-		tf_zs = new JTextField();
+		tf_zs = new JTextField("50+j20");
 		jtfdim.setSize(tf_zs.getMaximumSize().getWidth(), tf_zs.getPreferredSize().getHeight());
 		tf_zs.setMaximumSize(jtfdim);
 		interfaz.add(tf_zs);
@@ -100,7 +100,7 @@ public class EAFO_Tools extends JFrame {
 		JLabel lbl_zl = new JLabel("<html> Z<sub>L</sub> </html>");
 		interfaz.add(lbl_zl);
 		
-		tf_zl = new JTextField();
+		tf_zl = new JTextField("20+j50");
 		tf_zl.setMaximumSize(jtfdim);
 		interfaz.add(tf_zl);
 		tf_zl.setColumns(10);
@@ -111,10 +111,12 @@ public class EAFO_Tools extends JFrame {
 				float[] zs = leerComplejo(tf_zs.getText());
 				float[] zl = leerComplejo(tf_zl.getText());
 				float[] sol;
+				AdaptacionMicrostrip adaptacionMicrostrip = new AdaptacionMicrostrip(zs[0], zs[1], zl[0], zl[1], 50);
 				
 				if(zs==null || zl==null)
 					return;
-				adaptacionMicrostrip.resolverStub();
+				adaptacionMicrostrip.calculaLongitudes();
+				//adaptacionMicrostrip.resolverStub();
 				redAdaptacion.setParam(zs[0], zs[1], zl[0], zl[1]);
 				redAdaptacion.resolverL1();
 				sol = redAdaptacion.getSol(0);

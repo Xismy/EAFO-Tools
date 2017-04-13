@@ -38,7 +38,7 @@ public class NumeroComplejo {
 		
 		NumeroComplejo resultado = new NumeroComplejo();
 		
-		resultado.x = (x*entrada.x + y *entrada.y);
+		resultado.x = (x*entrada.x - y *entrada.y);
 		resultado.y = (x*entrada.y + y*entrada.x);
 		
 		return resultado;		

@@ -55,6 +55,6 @@ public class RedAdaptacion {
 	}
 	
 	public float[] getSol(int n){
-		return new float[]{a[n], b[n]};
+		return new float[]{a[n], 1/b[n]};
 	}
 }
