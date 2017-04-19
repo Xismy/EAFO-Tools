@@ -29,11 +29,10 @@ for l1=0:0.0001:0.5
                 if imag(Zz)>= imag(Zin)*0.999 && imag(Zz)<=imag(Zin)*1.001
                     Lstub=l1*c*100/f %%Longitud del stub en cm
                     %Lstub=l1 %%% Longitud del Stub en Lambda
-                    Wstub=fcalcular_w(Zostub,er,Lstub)  %% Ancho del Stub
                     
                     Llinea=l2*c*100/f %%%% Longitud de la linea en cm
                     %Llinea=l2   %%% Longitud de la linea en Lambda
-                    Wlinea=fcalcular_w(Zolinea,er,Llinea)  %%% Ancho de la linea
+                    
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
                 end
             end
@@ -42,11 +41,10 @@ for l1=0:0.0001:0.5
                 if imag(Zz)<= imag(Zin)*0.999 && imag(Zz)>=imag(Zin)*1.001
                     Lstub=l1*c*100/f %%Longitud del stub en cm
                     %Lstub=l1 %%% Longitud del Stub en Lambda
-                    Wstub=fcalcular_w(Zostub,er,Lstub)  %% Ancho del Stub
                     
                     Llinea=l2*c*100/f %%%% Longitud de la linea en cm
                     %Llinea=l2   %%% Longitud de la linea en Lambda
-                    Wlinea=fcalcular_w(Zolinea,er,Llinea)  %%% Ancho de la linea
+
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
                 end
             end
