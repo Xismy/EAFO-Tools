@@ -5,8 +5,8 @@ clc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Parametros
-c=3*10^8; %Valor fijo
-er=3.5; %permitividad electrica relativa
+c=3*10^8; %Velocidad de la luz
+er=2.2; %permitividad electrica relativa
 e0=8.8542*10^-12; %permitividad electrica absoluta
 u0=4*pi*10^-7; %permeabilidad magnética;
 v=1/sqrt(u0*e0*er); %velocidad
@@ -16,7 +16,6 @@ Zostub = 50; %Impendancia caracteristica del stub
 ZS=15-1j*25; % Impedancia de fuente
 ZL=35+1j*20; % Impedancia de carga
 f=4*10^9;  % Frecuencia
-er=2.2;
 
 Zin=conj(ZS); %Impedancia donde tenemos que llegar. Debe ser conjugado de ZS
 
