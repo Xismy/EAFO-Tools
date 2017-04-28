@@ -19,6 +19,11 @@ f=4*10^9;  % Frecuencia
 
 Zin=conj(ZS); %Impedancia donde tenemos que llegar. Debe ser conjugado de ZS
 
+lstub_vector =[];
+Llinea_vector = [];
+Zz_vector = [];
+contador = 1;
+
 for l1=0:0.0001:0.5
     for l2=0:0.0001:0.5
         Zx=(Zolinea*(ZL+1j*Zolinea*tan(2*pi*l2)))/(Zolinea+1j*ZL*tan(2*pi*l2)); % Impedancia al inicio de la linea
@@ -30,32 +35,43 @@ for l1=0:0.0001:0.5
                 if imag(Zz)>= imag(Zin)*0.999 && imag(Zz)<=imag(Zin)*1.001
 
                     Lstub=l1*v*100/f %Longitud del stub en cm
+                    Lstub_vector(contador) = Lstub; 
                     %Lstub=l1 % Longitud del Stub en Lambda
                     
                     Llinea=l2*v*100/f % Longitud de la linea en cm
                     %Llinea=l2  % Longitud de la linea en Lambda
-                    
+                    Llinea_vector(contador) = Llinea; 
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
+                    
+                    Zz_vector(contador) = Zz;
+                    contador = contador +1;
                 end
             end
         else
             if real(Zz)>= real(Zin)*0.999 && real(Zz)<=real(Zin)*1.001
                 if imag(Zz)<= imag(Zin)*0.999 && imag(Zz)>=imag(Zin)*1.001
 
+                    Lstub_vector(contador) = Lstub; 
                     Lstub=l1*v*100/f % Longitud del stub en cm
                     %Lstub=l1 % Longitud del Stub en Lambda
                     
                     Llinea=l2*v*100/f % Longitud de la linea en cm
                     %Llinea=l2  % Longitud de la linea en Lambda
+                    Llinea_vector(contador) = Llinea; 
 
                     Zz % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
+                       Zz_vector(contador) = Zz;
+                       contador = contador+1;
                 end
             end
         end
     end
 end
 
-
+[A B]=min(Zz_vector-Zin);
+Zz_vector(B)
+Lstub_vector(B)
+Llinea_vector(B)
 
 
           
