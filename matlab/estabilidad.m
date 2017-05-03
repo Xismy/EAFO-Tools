@@ -28,6 +28,40 @@ rCEE = (abs(s12*s21))/(abs(abs(Delta)^2-abs(s11)^2));
 
 K = (1 - abs(s11)^2 - abs(s22)^2 + abs(Delta)^2)/(2*abs(s12*s21));
 
+%%% Comprobación de estabilidad con la constante de rollet
+if (K > 1 && abs(Delta) < 1)
+   disp('Estabilidad incondicional')
+end
+
+if (K > 1 && abs(Delta) > 1)
+   disp('Estabilidad condiciona ')
+end
+
+if (K < 1  && K > -1)
+   disp('Estabilidad condicional')
+end
+
+if (K < -1)
+   disp('Incondicionalmente inestable')
+end
+
+%%% Determinación de la estabilidad en las regiones calculadas
+
+if (abs(s11) < 1)
+    disp('gammaL = 0 es estable')
+
+else
+    disp('gammaL = 0 es inestable')
+end
+
+if (abs(s22) < 1)
+    disp('gammaS = 0 es estable')
+
+else
+    disp('gammaS = 0 es inestable')
+end
+
+
 %Dibujos
 
 x=cos(angle);
