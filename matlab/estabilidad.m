@@ -61,6 +61,32 @@ else
     disp('gammaS = 0 es inestable')
 end
 
+%MAG
+
+MAG=abs(s21/s12)*(K-sqrt(K^2-1));
+MAGdB=10*log10(MAG);
+
+%MSG
+
+MSG=abs(s21/s12);
+MSGdB=10*log10(MSG);
+
+%Curvas de ganancia de potencia constante:
+
+Gp=140;   %Ganancia deseada menor que el MSG en caso de inestabilidad condicionada.
+          % 140 equivale a 21,46 dB
+gp=Gp/abs(s21)^2;
+
+Cp = gp*conj(s22-Delta*conj(s11))/(1+gp*(abs(s22)^2-abs(Delta)^2)); %Centro
+rp=sqrt(1-2*K*abs(s12*s21)*gp+(abs(s12*s21)^2)*gp^2)/(1+gp*(abs(s22)^2-abs(Delta)^2)); %radio
+
+%Curvas de ganancia disponible constante:
+
+Ga=140;  %Ganancia deseada menor que el MSG en caso de...
+ga=Ga/abs(s21)^2;
+
+Ca = ga*conj(s11-Delta*conj(s22))/(1+ga*(abs(s11)^2-abs(Delta)^2)); %Centro
+ra = sqrt(1-2*K*abs(s12*s21)*ga+(abs(s12*s21)^2)*ga^2)/(1+ga*(abs(s11)^2-abs(Delta)^2)); %radio
 
 %Dibujos
 
@@ -70,6 +96,7 @@ plot(rCES*(x+real(cCES)/rCES),rCES*(y+imag(cCES)/rCES),'-r')
 hold on 
 
 plot(rCEE*(x+real(cCEE)/rCEE),rCEE*(y+imag(cCEE)/rCEE),'-g')
+plot(ra*(x+real(Ca)/ra),ra*(y+imag(Ca)/ra),'-b')
 hold off
-legend('Circulo Unidad', 'CES', 'CEE')
+legend('Circulo Unidad', 'CES', 'CEE','Ga 21,46 dB')
 axis ([ -1.5 1.5 -1.5 1.5 ])
