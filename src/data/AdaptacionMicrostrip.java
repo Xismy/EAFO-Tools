@@ -52,11 +52,7 @@ public class AdaptacionMicrostrip{
 	}
 	
 	public void calculaLongitudes(){
-		double l1 = Math.PI/2, l2 = 3*l1;
-		minimizar(l1, l1);
-		minimizar(l1, l2);
-		minimizar(l2, l1);
-		minimizar(l2, l2);
+		minimizar(0.5, 0.5);
 	}
 	
 	public void resolverStub(){

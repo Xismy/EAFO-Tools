@@ -252,7 +252,7 @@ public class EAFO_Tools extends JFrame {
 		tF_c1z2C.setBounds(739, 137, 89, 26);
 		layeredPane.add(tF_c1z2C);
 		
-		JLabel lblConSolucion = new JLabel("Con solución 1");
+		JLabel lblConSolucion = new JLabel("Con soluci\u00F3n 1");
 		lblConSolucion.setBounds(640, 28, 100, 16);
 		layeredPane.add(lblConSolucion);
 		
@@ -319,7 +319,7 @@ public class EAFO_Tools extends JFrame {
 		tF_c2z2C.setBounds(734, 136, 89, 26);
 		layeredPane_1.add(tF_c2z2C);
 		
-		JLabel lblConSolucion_1 = new JLabel("Con solución 1");
+		JLabel lblConSolucion_1 = new JLabel("Con soluci\u00F3n 1");
 		lblConSolucion_1.setBounds(636, 24, 100, 16);
 		layeredPane_1.add(lblConSolucion_1);
 	}
