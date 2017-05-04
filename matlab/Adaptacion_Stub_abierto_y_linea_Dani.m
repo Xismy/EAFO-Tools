@@ -39,8 +39,8 @@ ereff=((er+1)/2)+((er-1)/(2*sqrt(1+(12/wh))));
 %Calculo de la velocidad de propagación
 v=1/sqrt(u0*e0*ereff); %velocidad
 
-for l1=0:0.0005:0.5
-    for l2=0:0.0005:0.5
+for l1=0:0.0002:0.5
+    for l2=0:0.0002:0.5
         Zx=(Zolinea*(ZL+1j*Zolinea*tan(2*pi*l2)))/(Zolinea+1j*ZL*tan(2*pi*l2)); % Impedancia al inicio de la linea
         Zy=-1j*Zostub*cot(2*pi*l1); %Impedancia del stub (el stub está en abierto)
         Zz=(Zx*Zy)/(Zx+Zy); %Paralelo 
