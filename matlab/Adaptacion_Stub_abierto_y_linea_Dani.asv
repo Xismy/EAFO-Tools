@@ -45,7 +45,41 @@ for l1=0:0.0002:0.5
         Zy=-1j*Zostub*cot(2*pi*l1); %Impedancia del stub (el stub está en abierto)
         Zz=(Zx*Zy)/(Zx+Zy); %Paralelo 
         
-       
+        if imag(Zin)>0
+            if real(Zz)>= real(Zin)*0.95 && real(Zz)<=real(Zin)*1.05
+                if imag(Zz)>= imag(Zin)*0.95 && imag(Zz)<=imag(Zin)*1.05
+                    
+                    Lstub=l1*v*1000/f; %%Longitud del stub en mm
+                    %Lstub=l1 %%% Longitud del Stub en Lambda
+                    Lstub_v(i)=Lstub;
+                    Llinea=l2*v*1000/f; %%%% Longitud de la linea en mm
+                    %Llinea=l2   %%% Longitud de la linea en Lambda
+                    Llinea_v(i)=Llinea;
+                    
+                    Zz; % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
+                    Zz_V(i)=Zz;
+                    i=i+1;
+                end
+            end
+        elseif imag(Zin)<0 
+            if real(Zz)>= real(Zin)*0.95 && real(Zz)<=real(Zin)*1.05
+                if imag(Zz)<= imag(Zin)*0.95 && imag(Zz)>=imag(Zin)*1.05
+                    
+                    Lstub=l1*v*1000/f; %%Longitud del stub en mm
+                    %Lstub=l1 %%% Longitud del Stub en Lambda
+                    Lstub_v(i)=Lstub;
+                    Llinea=l2*v*1000/f; %%%% Longitud de la linea en mm
+                    %Llinea=l2   %%% Longitud de la linea en Lambda
+                    Llinea_v(i)=Llinea;
+                    
+                    Zz; % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
+                    Zz_v(i)=Zz;
+                    i=i+1;
+                end
+            end
+        else
+            if real(Zz)>= real(Zin)*0.95 && real(Zz)<=real(Zin)*1.05
+                if imag(Zz)<=0.1 && imag(Zz)>=0.0001
                     
                    Lstub=l1*v*1000/f; %%Longitud del stub en mm
                     %Lstub=l1 %%% Longitud del Stub en Lambda
@@ -57,6 +91,10 @@ for l1=0:0.0002:0.5
                     Zz; % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
                     Zz_v(i)=Zz;
                     i=i+1;
+                    
+                end
+            end
+        end
     end
 end
 
@@ -66,8 +104,8 @@ for j=1:1:length(v)
     if abs(v(j))<5  %Esto indica el porcentaje de error. 
        fprintf('Solución %d: \n', k);
        fprintf('Error: %1.3f\n', abs(v(j))); %Error en %
-       fprintf('Longitud de la línea: %1.3f mm\n', Llinea_v(j)); 
-       fprintf('Longitud del stub: %1.3f mm\n', Lstub_v(j)); 
+       fprintf('Longitud de la línea: %1.3f\n', Llinea_v(j)); %
+       fprintf('Longitud del stub: %1.3f\n', Lstub_v(j));
        Zz=Zz_v(j);
        Zz
        k=k+1;
