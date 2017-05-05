@@ -3,10 +3,10 @@ close all
 
 % Como entrada se dan los parámetros S
 
-s11 = 0.65*exp(1i*(degtorad(-95)));
-s12 = 0.035*exp(1i*(degtorad(40)));
-s21 = 5*exp(1i*(degtorad(115)));
-s22 = 0.81*exp(1i*(degtorad(-35)));
+s11 = 0.2528*exp(1i*(degtorad(-109)));
+s12 = 0.0571*exp(1i*(degtorad(61.9)));
+s21 = 9.97*exp(1i*(degtorad(86.4)));
+s22 = 0.448*exp(1i*(degtorad(-53.9)));
 
 angle=0:pi/64:2*pi;
 % plot(cos(angle),sin(angle),'k');
@@ -81,13 +81,43 @@ gp=Gp/abs(s21)^2;
 Cp = gp*conj(s22-Delta*conj(s11))/(1+gp*(abs(s22)^2-abs(Delta)^2)); %Centro
 rp=sqrt(1-2*K*abs(s12*s21)*gp+(abs(s12*s21)^2)*gp^2)/(1+gp*(abs(s22)^2-abs(Delta)^2)); %radio
 
-%Curvas de ganancia disponible constante:
+%Curvas de ganancia disponible constante (CEA):
 
-Ga=140;  %Ganancia deseada menor que el MSG en caso de...
+Ga=MSG;  %Ganancia deseada menor que el MSG en caso de...
 ga=Ga/abs(s21)^2;
 
 Ca = ga*conj(s11-Delta*conj(s22))/(1+ga*(abs(s11)^2-abs(Delta)^2)); %Centro
 ra = sqrt(1-2*K*abs(s12*s21)*ga+(abs(s12*s21)^2)*ga^2)/(1+ga*(abs(s11)^2-abs(Delta)^2)); %radio
+
+%Curvas de Figura de ruido constante:
+
+Rn_norm=0.47;
+Coefopt = 0.65*exp(1i*(degtorad(-80)));
+
+FmindB=2.4; %en dB
+Fmin=10^(FmindB/10); %En lineal
+Fi=Fmin;
+Fi2dB=FmindB+0.3;
+Fi2=10^(Fi2dB/10);
+Ni=((Fi-Fmin)*abs(1+Coefopt)^2)/(4*Rn_norm);
+Ni2=((Fi2-Fmin)*abs(1+Coefopt)^2)/(4*Rn_norm);
+rn=sqrt(Ni^2+Ni*(1-abs(Coefopt)^2))/(1+Ni);
+rn2=sqrt(Ni2^2+Ni2*(1-abs(Coefopt)^2))/(1+Ni2);
+Cn=Coefopt/(1+Ni);
+Cn2=Coefopt/(1+Ni2);
+
+Fi3dB=FmindB+0.6;
+Fi4dB = FmindB + 1;
+Fi4=10^(Fi4dB/10);
+Fi3=10^(Fi3dB/10);
+Ni3=((Fi3-Fmin)*abs(1+Coefopt)^2)/(4*Rn_norm);
+Ni4=((Fi4-Fmin)*abs(1+Coefopt)^2)/(4*Rn_norm);
+rn3=sqrt(Ni3^2+Ni3*(1-abs(Coefopt)^2))/(1+Ni3);
+rn4=sqrt(Ni4^2+Ni4*(1-abs(Coefopt)^2))/(1+Ni4);
+Cn3=Coefopt/(1+Ni3);
+Cn4=Coefopt/(1+Ni4);
+
+
 
 % se dibuja también otras curvas de ganancia 
 
@@ -117,6 +147,10 @@ plot(rCEE*(x+real(cCEE)/rCEE),rCEE*(y+imag(cCEE)/rCEE),'-g')
 plot(ra*(x+real(Ca)/ra),ra*(y+imag(Ca)/ra),'-b')
 plot(ra2*(x+real(Ca2)/ra2),ra2*(y+imag(Ca2)/ra2),'-b')
 plot(ra3*(x+real(Ca3)/ra3),ra3*(y+imag(Ca3)/ra3),'-b')
+plot(real(Cn),imag(Cn),'ok')
+plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
+plot(rn3*(x+real(Cn3)/rn3),rn3*(y+imag(Cn3)/rn3),'-k')
+plot(rn4*(x+real(Cn4)/rn4),rn4*(y+imag(Cn4)/rn4),'-k')
 hold off
-legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB')
+legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB', 'Fig R min', 'Fig R + 0.3 dB', 'Fig R + 0.6 dB', 'Fig R + 1 dB')
 axis ([ -1.5 1.5 -1.5 1.5 ])
