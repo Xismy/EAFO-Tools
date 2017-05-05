@@ -38,32 +38,36 @@ ereff=((er+1)/2)+((er-1)/(2*sqrt(1+(12/wh))));
 
 %Calculo de la velocidad de propagación
 v=1/sqrt(u0*e0*ereff); %velocidad
+
+
 i=1;
 for l1=0:0.0002:0.5
     for l2=0:0.0002:0.5
+
         Zx=(Zolinea*(ZL+1j*Zolinea*tan(2*pi*l2)))/(Zolinea+1j*ZL*tan(2*pi*l2)); % Impedancia al inicio de la linea
         Zy=-1j*Zostub*cot(2*pi*l1); %Impedancia del stub (el stub está en abierto)
         Zz=(Zx*Zy)/(Zx+Zy); %Paralelo 
         
-       
+        Lstub=l1*v*1000/f; %%Longitud del stub en mm
+        %Lstub=l1 %%% Longitud del Stub en Lambda
+        Lstub_v(i)=Lstub;
                     
-                   Lstub=l1*v*1000/f; %%Longitud del stub en mm
-                    %Lstub=l1 %%% Longitud del Stub en Lambda
-                    Lstub_v(i)=Lstub;
-                    Llinea=l2*v*1000/f; %%%% Longitud de la linea en mm
-                    %Llinea=l2   %%% Longitud de la linea en Lambda
-                    Llinea_v(i)=Llinea;
+        Llinea=l2*v*1000/f; %%%% Longitud de la linea en mm
+        %Llinea=l2   %%% Longitud de la linea en Lambda
+        Llinea_v(i)=Llinea;
                     
-                    Zz; % Saldran muchas soluciones, mirad cual se parece más a conj(ZS)
-                    Zz_v(i)=Zz;
-                    i=i+1;
+        Zz_v(i)=Zz;
+        i=i+1;
+
     end
 end
 
-v=(Zz_v-Zin)*100;
+%Imprime las soluciones
+v=(Zz_v-Zin)*100; %Vector con el error en porcentaje
+
 k=1;
 for j=1:1:length(v)
-    if abs(v(j))<5  %Esto indica el porcentaje de error. 
+    if abs(v(j))<5  %Esto indica el porcentaje de error. Si no sale nada, aumentar.
        fprintf('Solución %d: \n', k);
        fprintf('Error: %1.3f\n', abs(v(j))); %Error en %
        fprintf('Longitud de la línea: %1.3f mm\n', Llinea_v(j)); 
@@ -73,8 +77,3 @@ for j=1:1:length(v)
        k=k+1;
     end
 end
-
-
-
-
-          
