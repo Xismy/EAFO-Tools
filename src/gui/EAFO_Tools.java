@@ -32,7 +32,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import data.RedAdaptacion;
+import data.*;
 
 public class EAFO_Tools extends JFrame {
 
@@ -42,6 +42,7 @@ public class EAFO_Tools extends JFrame {
 	private JLabel lbzs1, lbys1, lbzs2, lbys2,
 	lbzs1_2, lbys1_2, lbzs2_2, lbys2_2;
 	private RedAdaptacion redAdaptacion = new RedAdaptacion();
+	private MicroStrip uStrip= null;
 	private JTextField tF_c1z1L;
 	private JTextField tF_c1z1C;
 	private JTextField tF_c1z2L;
@@ -50,8 +51,9 @@ public class EAFO_Tools extends JFrame {
 	private JTextField tF_c2z1C;
 	private JTextField tF_c2z2L;
 	private JTextField tF_c2z2C;
+	private JTextField tf_freq;
 	
-	private double freq=2.4e9;
+	private double freq;
 	
 
 	/**
@@ -75,6 +77,13 @@ public class EAFO_Tools extends JFrame {
 	 * Create the frame.
 	 */
 	public EAFO_Tools() {
+		
+		/**********************************************************/
+		uStrip = new MicroStrip(50, 3.5);
+		uStrip.setH(1.1);
+		/**********************************************************/
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1172, 776);
 		contentPane = new JPanel();
@@ -101,7 +110,7 @@ public class EAFO_Tools extends JFrame {
 		JLabel lbl_zs = new JLabel("<html> Z<sub>S</sub> </html>");
 		interfaz.add(lbl_zs);
 		
-		tf_zs = new JTextField("50+j20");
+		tf_zs = new JTextField("50");
 		jtfdim.setSize(tf_zs.getMaximumSize().getWidth(), tf_zs.getPreferredSize().getHeight());
 		tf_zs.setMaximumSize(jtfdim);
 		interfaz.add(tf_zs);
@@ -110,10 +119,18 @@ public class EAFO_Tools extends JFrame {
 		JLabel lbl_zl = new JLabel("<html> Z<sub>L</sub> </html>");
 		interfaz.add(lbl_zl);
 		
-		tf_zl = new JTextField("20+j50");
+		tf_zl = new JTextField("25+j47");
 		tf_zl.setMaximumSize(jtfdim);
 		interfaz.add(tf_zl);
 		tf_zl.setColumns(10);
+		
+		JLabel lbl_freq = new JLabel("Frecuencia");
+		interfaz.add(lbl_freq);
+		
+		tf_freq = new JTextField("4e9");
+		tf_freq.setMaximumSize(jtfdim);
+		interfaz.add(tf_freq);
+		tf_freq.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Calcular");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -121,12 +138,17 @@ public class EAFO_Tools extends JFrame {
 				float[] zs = leerComplejo(tf_zs.getText());
 				float[] zl = leerComplejo(tf_zl.getText());
 				float[] sol;
+				freq = Double.parseDouble(tf_freq.getText());
 				AdaptacionMicrostrip adaptacionMicrostrip = new AdaptacionMicrostrip(zs[0], zs[1], zl[0], zl[1], 50);
 				
 				if(zs==null || zl==null)
 					return;
-				adaptacionMicrostrip.calculaLongitudes();
-				//adaptacionMicrostrip.resolverStub();
+				
+				if(uStrip==null)
+					adaptacionMicrostrip.solucion();
+				else
+					adaptacionMicrostrip.solucion(uStrip, freq);
+				
 				redAdaptacion.setParam(zs[0], zs[1], zl[0], zl[1]);
 				redAdaptacion.resolverL1();
 				

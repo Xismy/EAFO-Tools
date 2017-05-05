@@ -31,8 +31,13 @@ public class NumeroComplejo {
 	
 	public double abs(){
 		
-		return  Math.sqrt((Math.pow(x,2) + Math.pow(y,2)));
+		return  Math.sqrt(abs2());
 	}
+	
+	public double abs2(){
+		return  x*x+y*y;
+	}
+	
 	
 	public NumeroComplejo multiplica(NumeroComplejo entrada ){
 		
