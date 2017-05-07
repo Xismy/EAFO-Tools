@@ -152,20 +152,35 @@ public class EAFO_Tools extends JFrame {
 				redAdaptacion.setParam(zs[0], zs[1], zl[0], zl[1]);
 				redAdaptacion.resolverL1();
 				
+				//Limpiamos las casillas
+				tF_c1z1L.setText("");
+				tF_c1z1C.setText("");
+				tF_c1z2L.setText("");
+				tF_c1z2C.setText("");
+				tF_c2z1L.setText("");
+				tF_c2z1C.setText("");
+				tF_c2z2L.setText("");
+				tF_c2z2C.setText("");
+				
 				sol = redAdaptacion.getSol(0); // solucion 1 circuito 1
 				lbzs1.setText("S1: "+sol[0]);
 				lbys1.setText("S1: "+sol[1]);
 				
+				
 				if(sol[0]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					
 					tF_c1z1L.setText(Double.toString(sol[0]/(2*3.1415*freq)));
 				}else if(sol[0]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){	  // condensador
-					tF_c1z1C.setText(Double.toString(1/(2*3.1415*freq*sol[0])));
+					
+					tF_c1z1C.setText(Double.toString(-1/(2*3.1415*freq*sol[0])));
 				}
 				
 				if(sol[1]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					
 					tF_c1z2L.setText(Double.toString(sol[1]/(2*3.1415*freq)));
 				}else if(sol[1]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){		  // condensador
-					tF_c1z2C.setText(Double.toString(1/(2*3.1415*freq*sol[1])));
+					
+					tF_c1z2C.setText(Double.toString(-1/(2*3.1415*freq*sol[1])));
 				}
 				
 				
@@ -181,16 +196,19 @@ public class EAFO_Tools extends JFrame {
 				lbzs1_2.setText("S1: "+sol[0]);
 				lbys1_2.setText("S1: "+sol[1]);
 				
+				//System.out.println("Sol0"+sol[0]);
+				
+				
 				if(sol[0]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
 					tF_c2z1L.setText(Double.toString(sol[0]/(2*3.1415*freq)));
 				}else if(sol[0]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){	  // condensador
-					tF_c2z1C.setText(Double.toString(1/(2*3.1415*freq*sol[0])));
+					tF_c2z1C.setText(Double.toString(-1/(2*3.1415*freq*sol[0])));
 				}
 				
 				if(sol[1]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
 					tF_c2z2L.setText(Double.toString(sol[1]/(2*3.1415*freq)));
 				}else if(sol[1]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){		  // condensador
-					tF_c2z2C.setText(Double.toString(1/(2*3.1415*freq*sol[1])));
+					tF_c2z2C.setText(Double.toString(-1/(2*3.1415*freq*sol[1])));
 				}
 				
 				sol = redAdaptacion.getSol(3);  // Solucion 2 circuito 2
@@ -277,6 +295,14 @@ public class EAFO_Tools extends JFrame {
 		JLabel lblConSolucion = new JLabel("Con soluci\u00F3n 1");
 		lblConSolucion.setBounds(640, 28, 100, 16);
 		layeredPane.add(lblConSolucion);
+		
+		JLabel lblY = new JLabel("Y");
+		lblY.setBounds(234, 234, 61, 16);
+		layeredPane.add(lblY);
+		
+		JLabel lblY_1 = new JLabel("Y");
+		lblY_1.setBounds(383, 165, 61, 16);
+		layeredPane.add(lblY_1);
 		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setPreferredSize(new Dimension(600, 330));
