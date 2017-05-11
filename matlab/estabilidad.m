@@ -161,7 +161,7 @@ plot(rCEE*(x+real(cCEE)/rCEE),rCEE*(y+imag(cCEE)/rCEE),'-g')
 plot(ra*(x+real(Ca)/ra),ra*(y+imag(Ca)/ra),'-b')
 plot(real(Cn),imag(Cn),'ok')
 plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
-plot(real(CoefL),imag(CoefL),'ob')
+%plot(real(CoefL),imag(CoefL),'ob')
 hold off
 legend('Circulo Unidad', 'CES', 'CEE','Ga 25dB', 'Fig R min', 'Fig R + 0.3 dB', 'CoefZ')
 axis ([ -1.5 1.5 -1.5 1.5 ])

@@ -79,6 +79,15 @@ public class NumeroComplejo {
 		return resultado;		
 	}
 	
+	public NumeroComplejo dividir(double entrada){
+		NumeroComplejo resultado = new NumeroComplejo();
+		
+		resultado.x = x/entrada;
+		resultado.y = y/entrada;
+		
+		return resultado;
+	}
+	
 	public void imprime(){
 		if (y < 0){
 			System.out.println(x + " - j" + Math.abs(y));
