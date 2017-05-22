@@ -3,11 +3,12 @@ close all
 
 % Como entrada se dan los parámetros S
 
-s11 = 0.5388*exp(1i*(degtorad(-112.505)));
-s12 = 0.0384*exp(1i*(degtorad(38.969)));
-s21 = 12.5471*exp(1i*(degtorad(98.325)));
-s22 = 0.586984*exp(1i*(degtorad(-61.197)));
-Zo=50;
+
+s11 = 0.5033*exp(1i*(degtorad(158.5)));
+s12 = 0.0720*exp(1i*(degtorad(52.7)));
+s21 = 5.659*exp(1i*(degtorad(49.3)));
+s22 = 0.1973*exp(1i*(degtorad(-119.3)));
+Zo = 50;
 
 angle=0:pi/64:2.1*pi;
 % plot(cos(angle),sin(angle),'k');
@@ -75,8 +76,12 @@ MSGdB=10*log10(MSG);
 
 %Curvas de ganancia de potencia constante:
 
-Gp=MSG;   %Curva justo en el MSG que será la máxima ganancia que se puede conseguir.
-         
+if (K > 1 && abs(Delta) < 1)
+    Gp = MAG;   
+else
+    Gp = MSG;
+end
+
 gp=Gp/abs(s21)^2;
 
 Cp = gp*conj(s22-Delta*conj(s11))/(1+gp*(abs(s22)^2-abs(Delta)^2)); %Centro
@@ -84,10 +89,11 @@ rp=sqrt(1-2*K*abs(s12*s21)*gp+(abs(s12*s21)^2)*gp^2)/(1+gp*(abs(s22)^2-abs(Delta
 
 %Curvas de ganancia disponible constante (CEA):
 
-Ga=316.228; %25 dB. Ganancia deseada menor que el MSG en caso de...
-if(Ga>MSG)
-    disp('Error: Has elegido una ganancia mayor de la disponible, se te cambia al MSG')
-    Ga=MSG;
+
+if (K > 1 && abs(Delta) < 1)
+    Ga = MAG;   
+else
+    Ga = MSG;
 end
 
 ga=Ga/abs(s21)^2;
@@ -97,9 +103,9 @@ ra = sqrt(1-2*K*abs(s12*s21)*ga+(abs(s12*s21)^2)*ga^2)/(1+ga*(abs(s11)^2-abs(Del
 
 %Curvas de Figura de ruido constante:
 %Datos dado por el fabricante:
-Rn_norm=0.47;
-Coefopt = 0.65*exp(1i*(degtorad(-80)));
-FmindB=0.7; %en dB
+Rn_norm=0.1;
+Coefopt = 0.24*exp(1i*(degtorad(180)));
+FmindB=0.96; %en dB
 Fmin=10^(FmindB/10); %En lineal
 
 Fi=Fmin;
@@ -127,11 +133,11 @@ Cn4=Coefopt/(1+Ni4);
 %%% Impedancia Zs y ZL %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%CoefS=-0.2372; %Fijarla nosotros
-%Zs=Coef2Z(CoefS,Zo)
-%CoefOut=calculoCoefOut(s11,s12,s21,s22,Zs,Zo);
-%CoefL=conj(CoefOut);
-%ZL=Coef2Z(CoefL,Zo);
+CoefS=-0.54; %Fijarla nosotros
+Zs=Coef2Z(CoefS,Zo)
+CoefOut=calculoCoefOut(s11,s12,s21,s22,Zs,Zo);
+CoefL=conj(CoefOut);
+ZL=Coef2Z(CoefL,Zo);
 
 % se dibuja también otras curvas de ganancia 
 
@@ -158,10 +164,13 @@ plot(rCES*(x+real(cCES)/rCES),rCES*(y+imag(cCES)/rCES),'-r')
 hold on 
 
 plot(rCEE*(x+real(cCEE)/rCEE),rCEE*(y+imag(cCEE)/rCEE),'-g')
-plot(ra*(x+real(Ca)/ra),ra*(y+imag(Ca)/ra),'-b')
+plot(ra*(x+real(Ca)/ra),ra*(y+imag(Ca)/ra),'-xb')
+plot(ra2*(x+real(Ca2)/ra2),ra2*(y+imag(Ca2)/ra2),'-b')
+plot(ra3*(x+real(Ca3)/ra3),ra3*(y+imag(Ca3)/ra3),'-b')
 plot(real(Cn),imag(Cn),'ok')
 plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
-%plot(real(CoefL),imag(CoefL),'ob')
+plot(rn3*(x+real(Cn3)/rn3),rn3*(y+imag(Cn3)/rn3),'-k')
+plot(rn4*(x+real(Cn4)/rn4),rn4*(y+imag(Cn4)/rn4),'-k')
 hold off
-legend('Circulo Unidad', 'CES', 'CEE','Ga 25dB', 'Fig R min', 'Fig R + 0.3 dB', 'CoefZ')
+legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB', 'Fig R min', 'Fig R + 0.3 dB', 'Fig R + 0.6 dB', 'Fig R + 1 dB')
 axis ([ -1.5 1.5 -1.5 1.5 ])
