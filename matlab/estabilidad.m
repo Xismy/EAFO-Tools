@@ -3,11 +3,17 @@ close all
 
 % Como entrada se dan los parámetros S
 
+% s11 = 0.5033*exp(1i*(degtorad(158.5)));
+% s12 = 0.0720*exp(1i*(degtorad(52.7)));
+% s21 = 5.659*exp(1i*(degtorad(49.3)));
+% s22 = 0.1973*exp(1i*(degtorad(-119.3)));
 
-s11 = 0.5033*exp(1i*(degtorad(158.5)));
-s12 = 0.0720*exp(1i*(degtorad(52.7)));
-s21 = 5.659*exp(1i*(degtorad(49.3)));
-s22 = 0.1973*exp(1i*(degtorad(-119.3)));
+% Oscilador 1 GHz
+
+s11 = 0.50*exp(1i*(degtorad(-88)));
+s12 = 0.008*exp(1i*(degtorad(68)));
+s21 = 45.64*exp(1i*(degtorad(135)));
+s22 = 0.77*exp(1i*(degtorad(-22)));
 Zo = 50;
 
 angle=0:pi/64:2.1*pi;
@@ -171,6 +177,7 @@ plot(real(Cn),imag(Cn),'ok')
 plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
 plot(rn3*(x+real(Cn3)/rn3),rn3*(y+imag(Cn3)/rn3),'-k')
 plot(rn4*(x+real(Cn4)/rn4),rn4*(y+imag(Cn4)/rn4),'-k')
+plot(x,y)
 hold off
 legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB', 'Fig R min', 'Fig R + 0.3 dB', 'Fig R + 0.6 dB', 'Fig R + 1 dB')
 axis ([ -1.5 1.5 -1.5 1.5 ])
