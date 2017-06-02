@@ -29,19 +29,19 @@ function [ lLinea_s1, lStub_s1, w ] = adaptalinea( ZS, ZL, Z0, Er, h, f)
     lLinea_s1 = atan(tanBl1_s1)/(2*pi);
     lStub_s1 = atan(tanBl2_s1)/(2*pi);
     if(lLinea_s1 < 0)
-        lLinea_s1 = lLinea_s1+0.5;
+        lLinea_s1 = atan(tanBl1_s1+2*pi)/(2*pi);
     end
     if(lStub_s1 < 0)
-        lStub_s1 = lStub_s1+0.5;
+        lStub_s1 = atan(tanBl2_s1+2*pi)/(2*pi);
     end
 
     lLinea_s2 = atan(tanBl1_s2)/(2*pi);
     lStub_s2 = atan(tanBl2_s2)/(2*pi);
     if(lLinea_s2 < 0)
-        lLinea_s2 = lLinea_s2+0.5;
+        lLinea_s2 = atan(tanBl1_s2+2*pi)/(2*pi);
     end
     if(lStub_s2 < 0)
-        lStub_s2 = lStub_s2+0.5;
+        lStub_s2 = atan(tanBl2_s2+2*pi)/(2*pi);
     end
 
     %Calculamos el ancho de la linea

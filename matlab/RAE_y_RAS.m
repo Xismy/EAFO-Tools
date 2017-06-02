@@ -64,9 +64,9 @@ end
 %%%% Red de Adaptacion RAS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[Llinea, Lstub, w] = adaptalinea(50,ZL, 50, Zo, h, f);
+[Llinea, Lstub, w] = adaptalinea(50,ZL, Zo, er, h, f);
     
-disp('Red de adaptación: RAE')
+disp('Red de adaptación: RAS')
 fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
 fprintf('Longitud del stub: %1.3f mm\n', Lstub);
 fprintf('Ancho de la línea: %1.3f mm\n', w);
