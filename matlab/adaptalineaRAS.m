@@ -28,8 +28,8 @@ function [ lLinea_s1, lStub_s1, w ] = adaptalinea( ZS, ZL, Z0, Er, h, f)
 
     lLinea_s1 = atan(tanBl1_s1)/(2*pi);
     lStub_s1 = atan(tanBl2_s1)/(2*pi);
-    lLinea_1=-1*lLinea_1;
-    lStub_1=-1*lStub_1;
+    lLinea_s1=-1*lLinea_s1;
+    lStub_s1=-1*lStub_s1;
 
     if(lLinea_s1 < 0)
         lLinea_s1 = lLinea_s1 + 0.5;
@@ -40,8 +40,8 @@ function [ lLinea_s1, lStub_s1, w ] = adaptalinea( ZS, ZL, Z0, Er, h, f)
 
     lLinea_s2 = atan(tanBl1_s2)/(2*pi);
     lStub_s2 = atan(tanBl2_s2)/(2*pi);
-    lLinea_2=-1*lLinea_2;
-    lStub_2=-1*lStub_2;
+    lLinea_s2=-1*lLinea_s2;
+    lStub_s2=-1*lStub_s2;
 
     if(lLinea_s2 < 0)
         lLinea_s2 = lLinea_s2 + 0.5;

@@ -5,8 +5,7 @@ clear all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Valores fijos
-e0=8.8542*10^-12; %permitividad electrica absoluta
-u0=4*pi*10^-7; %permeabilidad magnética;
+c=3*10^8;
 
 %Valores que hay que modificar
 er=9; %permitividad electrica relativa
@@ -38,7 +37,7 @@ if imag(Zs)== 0
     ereff=((er+1)/2)+((er-1)/(2*sqrt(1+(12/wh))));
 
     %Calculo de la velocidad
-    v=1/sqrt(u0*e0*ereff); %velocidad
+    v=c/sqrt(ereff); %velocidad
 
     %Calculo de la línea
     l1=0.25; %linea
