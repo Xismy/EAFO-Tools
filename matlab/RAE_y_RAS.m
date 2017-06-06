@@ -49,7 +49,7 @@ if imag(Zs)== 0
     fprintf('Ancho de la línea: %1.3f mm\n', w);
     disp('----------------------------------------------')
 else
-    [Llinea, Lstub, w] = adaptalinea(50,Zs, Zo, er, h, f);
+    [Llinea, Lstub, w] = adaptalineaRAE(50,Zs, Zo, er, h, f);
     
     disp('Red de adaptación: RAE')
     fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
@@ -64,7 +64,7 @@ end
 %%%% Red de Adaptacion RAS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[Llinea, Lstub, w] = adaptalinea(50,ZL, Zo, er, h, f);
+[Llinea, Lstub, w] = adaptalineaRAS(50,ZL, Zo, er, h, f);
     
 disp('Red de adaptación: RAS')
 fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
