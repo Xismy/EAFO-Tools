@@ -1,0 +1,17 @@
+clear all;clc;
+%% Declaraci?n de variables
+Zlr=24.1; %Parte real impedancia de carga Zl
+Zlim=33.92; %Parte imaginaria impedancia de carga Zl
+Zo=50; %Impedancia caracteristica
+G=1/Zo;
+%Zlr=7.8;
+%Zlim=0;
+
+[X,t]=solve('Zlr*Zo*G-Zlim*Zo*X-Zlim*tan(t)=Zo*(1-tan(t)*Zo*X)','Zlr*Zo*X+Zlr*tan(t)+Zlim*Zo*G=Zo*tan(t)*Zo*G');
+(X)
+(t)
+ dist1=t(1)/(2*pi)
+long1=acot(1/(50*X(1)))/(2*pi)
+ dist2=t(2)/(2*pi)
+long2=acot(1/(Zo*X(2)))/(2*pi)
+%ZL=Zo*(ZA+j*Zo*tan(0.1642))/(Zo+j*ZA*tan(0.1642));
