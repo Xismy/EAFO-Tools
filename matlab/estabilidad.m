@@ -10,10 +10,10 @@ close all
 
 % Oscilador 1 GHz
 
-s11 = 0.50*exp(1i*(degtorad(-88)));
-s12 = 0.008*exp(1i*(degtorad(68)));
-s21 = 45.64*exp(1i*(degtorad(135)));
-s22 = 0.77*exp(1i*(degtorad(-22)));
+s11 = 0.4879*exp(1i*(degtorad(146.4)));
+s12 = 0.0945*exp(1i*(degtorad(25.9)));
+s21 = 4.027*exp(1i*(degtorad(30)));
+s22 = 0.243*exp(1i*(degtorad(-119.7)));
 Zo = 50;
 
 angle=0:pi/64:2.1*pi;

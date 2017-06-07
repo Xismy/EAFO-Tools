@@ -9,10 +9,10 @@ c=3*10^8;
 
 %Valores que hay que modificar
 er=9; %permitividad electrica relativa
-Zs=30.83; % Impedancia Zs calculada en el script estabilidad
-ZL=35.4847 + 80.4630*1i;  % Impendancia ZL calculada en el scrip estabilidad
+Zs=10.7031 - 11.8591*1i; % Impedancia Zs calculada en el script estabilidad
+ZL=18.367 + 33.5671*1i;  % Impendancia ZL calculada en el scrip estabilidad
 Zo = 50; %Impedancia caracteristica
-f=2.4*10^9; %Frecuencia
+f=5*10^9; %Frecuencia
 h=1; %Espesor del dielectrico en mm
 
 if imag(Zs)== 0
@@ -48,7 +48,7 @@ if imag(Zs)== 0
     fprintf('Ancho de la línea: %1.3f mm\n', w);
     disp('----------------------------------------------')
 else
-    [Llinea, Lstub, w] = adaptalineaRAE(50,Zs, Zo, er, h, f);
+    [Llinea, Lstub, w] = adaptalinea(50,Zs, Zo, er, h, f);
     
     disp('Red de adaptación: RAE')
     fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
@@ -63,7 +63,7 @@ end
 %%%% Red de Adaptacion RAS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[Llinea, Lstub, w] = adaptalineaRAS(50,ZL, Zo, er, h, f);
+[Llinea, Lstub, w] = adaptalinea(50,ZL, Zo, er, h, f);
     
 disp('Red de adaptación: RAS')
 fprintf('Longitud de la línea: %1.3f mm\n', Llinea);

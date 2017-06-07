@@ -25,24 +25,48 @@ function [ lLinea_s1, lStub_s1, w ] = adaptalinea( ZS, ZL, Z0, Er, h, f)
     tanBl1_s2 = (-b-sqrt(b*b-4*a*c))/(2*a);
     Blinea_s2 = (GS*(1-Z0*BL*tanBl1_s2)-GL)/(Z0*GL*tanBl1_s2); 
     tanBl2_s2 = -Z0*(BS+Blinea_s2);
-
+    
     lLinea_s1 = atan(tanBl1_s1)/(2*pi);
     lStub_s1 = atan(tanBl2_s1)/(2*pi);
+    lLinea_s1=-1*lLinea_s1;
+    lStub_s1=-1*lStub_s1;
+    
     if(lLinea_s1 < 0)
-        lLinea_s1 = atan(tanBl1_s1+2*pi)/(2*pi);
+        lLinea_s1 = lLinea_s1 + 0.5;
     end
     if(lStub_s1 < 0)
-        lStub_s1 = atan(tanBl2_s1+2*pi)/(2*pi);
+        lStub_s1 = lStub_s1 + 0.5;
     end
-
+    
     lLinea_s2 = atan(tanBl1_s2)/(2*pi);
     lStub_s2 = atan(tanBl2_s2)/(2*pi);
+    lLinea_s2=-1*lLinea_s2;
+    lStub_s2=-1*lStub_s2;
+    
     if(lLinea_s2 < 0)
-        lLinea_s2 = atan(tanBl1_s2+2*pi)/(2*pi);
+        lLinea_s2 = lLinea_s2 + 0.5;
     end
     if(lStub_s2 < 0)
-        lStub_s2 = atan(tanBl2_s2+2*pi)/(2*pi);
+        lStub_s2 = lStub_s2 + 0.5;
     end
+
+%     lLinea_s1 = atan(tanBl1_s1)/(2*pi);
+%     lStub_s1 = atan(tanBl2_s1)/(2*pi);
+%     if(lLinea_s1 < 0)
+%         lLinea_s1 = atan(tanBl1_s1+2*pi)/(2*pi);
+%     end
+%     if(lStub_s1 < 0)
+%         lStub_s1 = atan(tanBl2_s1+2*pi)/(2*pi);
+%     end
+% 
+%     lLinea_s2 = atan(tanBl1_s2)/(2*pi);
+%     lStub_s2 = atan(tanBl2_s2)/(2*pi);
+%     if(lLinea_s2 < 0)
+%         lLinea_s2 = atan(tanBl1_s2+2*pi)/(2*pi);
+%     end
+%     if(lStub_s2 < 0)
+%         lStub_s2 = atan(tanBl2_s2+2*pi)/(2*pi);
+%     end
 
     %Calculamos el ancho de la linea
 
