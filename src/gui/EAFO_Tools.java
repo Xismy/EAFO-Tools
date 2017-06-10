@@ -54,6 +54,14 @@ public class EAFO_Tools extends JFrame {
 	private JTextField tf_freq;
 	
 	private double freq;
+	private JTextField tF2_c1z1L;
+	private JTextField tF2_c1z1C;
+	private JTextField tF2_c1z2L;
+	private JTextField tF2_c1z2C;
+	private JTextField tF2_c2z1L;
+	private JTextField tF2_c2z1C;
+	private JTextField tF2_c2z2L;
+	private JTextField tF2_c2z2C;
 	
 
 	/**
@@ -162,6 +170,15 @@ public class EAFO_Tools extends JFrame {
 				tF_c2z2L.setText("");
 				tF_c2z2C.setText("");
 				
+				tF2_c1z1L.setText("");
+				tF2_c1z1C.setText("");
+				tF2_c1z2L.setText("");
+				tF2_c1z2C.setText("");
+				tF2_c2z1L.setText("");
+				tF2_c2z1C.setText("");
+				tF2_c2z2L.setText("");
+				tF2_c2z2C.setText("");
+				
 				sol = redAdaptacion.getSol(0); // solucion 1 circuito 1
 				lbzs1.setText("S1: "+sol[0]);
 				lbys1.setText("S1: "+sol[1]);
@@ -189,6 +206,20 @@ public class EAFO_Tools extends JFrame {
 				lbzs2.setText("S2: "+sol[0]);
 				lbys2.setText("S2: "+sol[1]);
 				
+				if(sol[0]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					
+					tF2_c1z1L.setText(Double.toString(sol[0]/(2*3.1415*freq)));
+				}else if(sol[0]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){	  // condensador	
+					tF2_c1z1C.setText(Double.toString(-1/(2*3.1415*freq*sol[0])));
+				}
+				
+				if(sol[1]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					
+					tF2_c1z2L.setText(Double.toString(sol[1]/(2*3.1415*freq)));
+				}else if(sol[1]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){		  // condensador
+					tF2_c1z2C.setText(Double.toString(-1/(2*3.1415*freq*sol[1])));
+				}
+				
 				
 				
 				redAdaptacion.resolverL2();
@@ -214,6 +245,18 @@ public class EAFO_Tools extends JFrame {
 				sol = redAdaptacion.getSol(3);  // Solucion 2 circuito 2
 				lbzs2_2.setText("S2: "+sol[0]);
 				lbys2_2.setText("S2: "+sol[1]);
+				
+				if(sol[0]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					tF2_c2z1L.setText(Double.toString(sol[0]/(2*3.1415*freq)));
+				}else if(sol[0]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){	  // condensador
+					tF2_c2z1C.setText(Double.toString(-1/(2*3.1415*freq*sol[0])));
+				}
+				
+				if(sol[1]>0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){ //bobina
+					tF2_c2z2L.setText(Double.toString(sol[1]/(2*3.1415*freq)));
+				}else if(sol[1]<0 && sol[1]!=Double.POSITIVE_INFINITY && sol[1]!=Double.NEGATIVE_INFINITY && sol[1]!=Double.NaN){		  // condensador
+					tF2_c2z2C.setText(Double.toString(-1/(2*3.1415*freq*sol[1])));
+				}
 				
 				
 			}
@@ -304,6 +347,46 @@ public class EAFO_Tools extends JFrame {
 		lblY_1.setBounds(383, 165, 61, 16);
 		layeredPane.add(lblY_1);
 		
+		JLabel lblConSolucin = new JLabel("Con solución 2");
+		lblConSolucin.setBounds(640, 188, 100, 16);
+		layeredPane.add(lblConSolucin);
+		
+		JLabel label_1 = new JLabel("Z1 bobina, L = ");
+		label_1.setBounds(640, 216, 100, 16);
+		layeredPane.add(label_1);
+		
+		JLabel label_3 = new JLabel("Z1 cond, C = ");
+		label_3.setBounds(640, 244, 100, 16);
+		layeredPane.add(label_3);
+		
+		JLabel label_5 = new JLabel("Z2 bobina, L = ");
+		label_5.setBounds(640, 272, 100, 16);
+		layeredPane.add(label_5);
+		
+		JLabel label_7 = new JLabel("Z2 cond, C = ");
+		label_7.setBounds(640, 301, 100, 16);
+		layeredPane.add(label_7);
+		
+		tF2_c1z1L = new JTextField();
+		tF2_c1z1L.setColumns(10);
+		tF2_c1z1L.setBounds(739, 210, 89, 26);
+		layeredPane.add(tF2_c1z1L);
+		
+		tF2_c1z1C = new JTextField();
+		tF2_c1z1C.setColumns(10);
+		tF2_c1z1C.setBounds(739, 239, 89, 26);
+		layeredPane.add(tF2_c1z1C);
+		
+		tF2_c1z2L = new JTextField();
+		tF2_c1z2L.setColumns(10);
+		tF2_c1z2L.setBounds(739, 267, 89, 26);
+		layeredPane.add(tF2_c1z2L);
+		
+		tF2_c1z2C = new JTextField();
+		tF2_c1z2C.setColumns(10);
+		tF2_c1z2C.setBounds(739, 296, 89, 26);
+		layeredPane.add(tF2_c1z2C);
+		
 		JLayeredPane layeredPane_1 = new JLayeredPane();
 		layeredPane_1.setPreferredSize(new Dimension(600, 330));
 		panel_1.add(layeredPane_1);
@@ -370,6 +453,46 @@ public class EAFO_Tools extends JFrame {
 		JLabel lblConSolucion_1 = new JLabel("Con soluci\u00F3n 1");
 		lblConSolucion_1.setBounds(636, 24, 100, 16);
 		layeredPane_1.add(lblConSolucion_1);
+		
+		JLabel label = new JLabel("Con solución 2");
+		label.setBounds(636, 188, 100, 16);
+		layeredPane_1.add(label);
+		
+		JLabel label_2 = new JLabel("Z1 bobina, L = ");
+		label_2.setBounds(636, 216, 100, 16);
+		layeredPane_1.add(label_2);
+		
+		JLabel label_4 = new JLabel("Z1 cond, C = ");
+		label_4.setBounds(636, 244, 100, 16);
+		layeredPane_1.add(label_4);
+		
+		JLabel label_6 = new JLabel("Z2 bobina, L = ");
+		label_6.setBounds(636, 272, 100, 16);
+		layeredPane_1.add(label_6);
+		
+		JLabel label_8 = new JLabel("Z2 cond, C = ");
+		label_8.setBounds(636, 300, 100, 16);
+		layeredPane_1.add(label_8);
+		
+		tF2_c2z1L = new JTextField();
+		tF2_c2z1L.setColumns(10);
+		tF2_c2z1L.setBounds(734, 211, 89, 26);
+		layeredPane_1.add(tF2_c2z1L);
+		
+		tF2_c2z1C = new JTextField();
+		tF2_c2z1C.setColumns(10);
+		tF2_c2z1C.setBounds(734, 239, 89, 26);
+		layeredPane_1.add(tF2_c2z1C);
+		
+		tF2_c2z2L = new JTextField();
+		tF2_c2z2L.setColumns(10);
+		tF2_c2z2L.setBounds(734, 267, 89, 26);
+		layeredPane_1.add(tF2_c2z2L);
+		
+		tF2_c2z2C = new JTextField();
+		tF2_c2z2C.setColumns(10);
+		tF2_c2z2C.setBounds(734, 295, 89, 26);
+		layeredPane_1.add(tF2_c2z2C);
 	}
 	
 	static float[] leerComplejo(String dato){
