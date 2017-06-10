@@ -1,4 +1,4 @@
-function [ lLinea_s1, lStub_s1, w ] = adaptalinea( ZS, ZL, Z0, Er, h, f)
+function [ lLinea_s1, lStub_s1, w ,lLinea_s2, lStub_s2] = adaptalinea( ZS, ZL, Z0, Er, h, f)
 
     YS = 1/ZS;
     YL = 1/ZL;

@@ -9,10 +9,10 @@ c=3*10^8;
 
 %Valores que hay que modificar
 er=9; %permitividad electrica relativa
-Zs=10.7031 - 11.8591*1i; % Impedancia Zs calculada en el script estabilidad
-ZL=18.367 + 33.5671*1i;  % Impendancia ZL calculada en el scrip estabilidad
+Zs=30.2182;  %10.7031 - 11.8591*1i; % Impedancia Zs calculada en el script estabilidad
+ZL=34.9915 + 81.3983*1i;  % Impendancia ZL calculada en el scrip estabilidad
 Zo = 50; %Impedancia caracteristica
-f=5*10^9; %Frecuencia
+f=2.4*10^9; %Frecuencia
 h=1; %Espesor del dielectrico en mm
 
 if imag(Zs)== 0
@@ -39,21 +39,21 @@ if imag(Zs)== 0
     %Calculo de la velocidad
     v=c/sqrt(ereff); %velocidad
 
-    %Calculo de la línea
+    %Calculo de la l?nea
     l1=0.25; %linea
-    Llinea=l1*v*1000/f; %Longitud de la línea en mm
+    Llinea=l1*v*1000/f; %Longitud de la l?nea en mm
     
-    disp('Red de adaptación: RAE')
-    fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
-    fprintf('Ancho de la línea: %1.3f mm\n', w);
+    disp('Red de adaptaci?n: RAE')
+    fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
+    fprintf('Ancho de la l?nea: %1.3f mm\n', w);
     disp('----------------------------------------------')
 else
-    [Llinea, Lstub, w] = adaptalinea(50,Zs, Zo, er, h, f);
+    [Llinea, Lstub, w, Llinea2, Lstub2] = adaptalinea(50,Zs, Zo, er, h, f);
     
-    disp('Red de adaptación: RAE')
-    fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
+    disp('Red de adaptaci?n: RAE')
+    fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
     fprintf('Longitud del stub: %1.3f mm\n', Lstub);
-    fprintf('Ancho de la línea: %1.3f mm\n', w);
+    fprintf('Ancho de la l?nea: %1.3f mm\n', w);
     disp('----------------------------------------------')
     
 end
@@ -63,10 +63,15 @@ end
 %%%% Red de Adaptacion RAS %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-[Llinea, Lstub, w] = adaptalinea(50,ZL, Zo, er, h, f);
+[Llinea, Lstub, w, Llinea2, Lstub2] = adaptalinea(50,ZL, Zo, er, h, f);
     
-disp('Red de adaptación: RAS')
-fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
+disp('Red de adaptaci?n: RAS')
+fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
 fprintf('Longitud del stub: %1.3f mm\n', Lstub);
-fprintf('Ancho de la línea: %1.3f mm\n', w);
+fprintf('Ancho de la l?nea: %1.3f mm\n', w);
+disp('.......');
+disp('Red de adaptaci?n: RAS 2nd solucion')
+fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea2);
+fprintf('Longitud del stub: %1.3f mm\n', Lstub2);
+fprintf('Ancho de la l?nea: %1.3f mm\n', w);
 
