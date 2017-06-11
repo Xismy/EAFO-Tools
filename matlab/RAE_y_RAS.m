@@ -50,17 +50,17 @@ if imag(Zs)== 0
     l1=0.25; %linea
     Llinea=l1*v*1000/f; %Longitud de la l?nea en mm
     
-    disp('Red de adaptaci?n: RAE')
-    fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
-    fprintf('Ancho de la l?nea: %1.3f mm\n', w);
+    disp('Red de adaptación: RAE')
+    fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
+    fprintf('Ancho de la línea: %1.3f mm\n', w);
     disp('----------------------------------------------')
 else
     [Llinea, Lstub, w, Llinea2, Lstub2] = adaptalinea(50,Zs, Zo, er, h, f);
     
-    disp('Red de adaptaci?n: RAE')
-    fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
+    disp('Red de adaptación: RAE')
+    fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
     fprintf('Longitud del stub: %1.3f mm\n', Lstub);
-    fprintf('Ancho de la l?nea: %1.3f mm\n', w);
+    fprintf('Ancho de la línea: %1.3f mm\n', w);
     disp('----------------------------------------------')
     
 end
@@ -72,13 +72,13 @@ end
 
 [Llinea, Lstub, w, Llinea2, Lstub2] = adaptalinea(50,ZL, Zo, er, h, f);
     
-disp('Red de adaptaci?n: RAS')
-fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea);
+disp('Red de adaptación: RAS')
+fprintf('Longitud de la línea: %1.3f mm\n', Llinea);
 fprintf('Longitud del stub: %1.3f mm\n', Lstub);
-fprintf('Ancho de la l?nea: %1.3f mm\n', w);
+fprintf('Ancho de la línea: %1.3f mm\n', w);
 disp('.......');
-disp('Red de adaptaci?n: RAS 2nd solucion')
-fprintf('Longitud de la l?nea: %1.3f mm\n', Llinea2);
+disp('Red de adaptación: RAS 2nd solucion')
+fprintf('Longitud de la línea: %1.3f mm\n', Llinea2);
 fprintf('Longitud del stub: %1.3f mm\n', Lstub2);
-fprintf('Ancho de la l?nea: %1.3f mm\n', w);
+fprintf('Ancho de la línea: %1.3f mm\n', w);
 
