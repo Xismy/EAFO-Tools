@@ -1,21 +1,3 @@
-%%%%%%%%%%%%%% EAFO %%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%  ESTABILIDAD  %%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Este script calcula la Curvas de estabilidad a la entrada (CEE), 
-% la Curva de estabilidad a la salida (CES), la constante de Rollet, 
-% la Máxima Ganancia Disponible (MAG), la Máxima Ganancia Estable (MSG), 
-% Curva de Ganancia de potencia constante, 
-% Curvas de Ganancia disponible constante (CEA) y 
-% varias Curvas de Figura de ruido constante
-
-% Además de los valores de Zs y ZL para realizar la adaptación posterior en
-% RAE Y RAS
-
-
-
 clear all
 close all
 
@@ -157,6 +139,12 @@ Cn4=Coefopt/(1+Ni4);
 %%% Impedancia Zs y ZL %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
+CoefS=-0.54; %Fijarla nosotros
+Zs=Coef2Z(CoefS,Zo)
+CoefOut=calculoCoefOut(s11,s12,s21,s22,Zs,Zo);
+CoefL=conj(CoefOut);
+ZL=Coef2Z(CoefL,Zo);
+
 % se dibuja también otras curvas de ganancia 
 
 GpdB = 10*log10(Ga);
@@ -174,10 +162,7 @@ ga3=Ga3/abs(s21)^2;
 Ca3 = ga3*conj(s11-Delta*conj(s22))/(1+ga3*(abs(s11)^2-abs(Delta)^2)); %Centro
 ra3 = sqrt(1-2*K*abs(s12*s21)*ga3+(abs(s12*s21)^2)*ga3^2)/(1+ga3*(abs(s11)^2-abs(Delta)^2)); %radio
 
-%% Dibujos
-
-% Dibujo prelimininar, para elegir el coeficiente de reflexión CoefS en el
-% plano de entrada
+%Dibujos
 
 x=cos(angle);
 y=sin(angle);
@@ -193,23 +178,7 @@ plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
 plot(rn3*(x+real(Cn3)/rn3),rn3*(y+imag(Cn3)/rn3),'-k')
 plot(rn4*(x+real(Cn4)/rn4),rn4*(y+imag(Cn4)/rn4),'-k')
 plot(x,y)
-% plot(real(CoefL), imag(CoefL),'xb')
+plot(real(CoefL), imag(CoefL),'xb')
 hold off
 legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB', 'Fig R min', 'Fig R + 0.3 dB', 'Fig R + 0.6 dB', 'Fig R + 1 dB', 'Unidad', 'CoefL')
 axis ([ -1.5 1.5 -1.5 1.5 ])
-
-% Ahora se dibuja con todo. Además se obtienen los valores de Zs y ZL que
-% luego serán los parámetros de entrada del RAE y RAS
-
-CoefS=input('Ingrese el valor del coeficiente de reflexión en el plano de entrada  (CoefS) elegido: ')
-
-Zs=Coef2Z(CoefS,Zo)
-CoefOut=calculoCoefOut(s11,s12,s21,s22,Zs,Zo);
-CoefL=conj(CoefOut);
-ZL=Coef2Z(CoefL,Zo)
-
-
-
-
-
-
