@@ -14,7 +14,8 @@
 % Además de los valores de Zs y ZL para realizar la adaptación posterior en
 % RAE Y RAS
 
-
+% Finalmente añadir que se trabaja en el plano de entrada, para
+% posteriormente (RAE_y_RAS.m) forzar adpatación conjugada a la salida
 
 clear all
 close all
@@ -193,7 +194,6 @@ plot(rn2*(x+real(Cn2)/rn2),rn2*(y+imag(Cn2)/rn2),'-k')
 plot(rn3*(x+real(Cn3)/rn3),rn3*(y+imag(Cn3)/rn3),'-k')
 plot(rn4*(x+real(Cn4)/rn4),rn4*(y+imag(Cn4)/rn4),'-k')
 plot(x,y)
-% plot(real(CoefL), imag(CoefL),'xb')
 hold off
 legend('Circulo Unidad', 'CES', 'CEE','Ga MSG','Ga -5dB','Ga -10dB', 'Fig R min', 'Fig R + 0.3 dB', 'Fig R + 0.6 dB', 'Fig R + 1 dB', 'Unidad', 'CoefL')
 axis ([ -1.5 1.5 -1.5 1.5 ])

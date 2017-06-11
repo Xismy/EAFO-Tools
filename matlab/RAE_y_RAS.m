@@ -4,6 +4,13 @@ clear all
 %%%%   Lambda 4 o linea y stub  %%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% 1. Forzamos adaptación conjugada a la salida, con M(2)=1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Esto es porque al trabajar desde el principio con la impedancia de
+% fuente, para así poder trabajar tanto con la Ganancia disponible como con
+% la Figura de ruido. (La figura de ruido no depende de ZL)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %Valores fijos
 c=3*10^8;
 
